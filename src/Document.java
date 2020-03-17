@@ -1,3 +1,4 @@
+import javax.print.Doc;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +7,12 @@ public class Document implements Serializable {
     private String id;
     private String name;
     private String location; // filename or webpage
+
+    public Document(String id, String name, String location){
+        this.id = id;
+        this.name = name;
+        this.location = location;
+    }
 
     private Map<String, Object> tags = new HashMap<String, Object>();
 

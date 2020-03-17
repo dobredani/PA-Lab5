@@ -7,6 +7,11 @@ public class Catalog implements Serializable {
     private String path;
     private List<Document> documents = new ArrayList<Document>();
 
+    public Catalog(String name, String path){
+        this.name = name;
+        this.path = path;
+    }
+
     public String getName() {
         return name;
     }
@@ -32,7 +37,7 @@ public class Catalog implements Serializable {
             if (document.getId().equals(id)){
                 return document;
             }
-            return null;
         }
+        return null;
     }
 }

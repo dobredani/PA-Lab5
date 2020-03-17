@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Main {
     public static void main(String args[]){
         Main app = new Main();
@@ -11,12 +13,28 @@ public class Main {
         doc.addTag("type", "Slides");
         catalog.add(doc);
 
-        CatalogUtil.save(catalog);
+        try {
+            CatalogUtil.save(catalog);
+        }
+        catch (IOException ex)
+        {
+            System.out.printf("Cannot save catalog: " + ex.toString());
+        }
     }
 
     private void testLoadView() {
-        Catalog catalog = CatalogUtil.load("d:/Workspace Facultate/PA-Lab5/catalog.ser");
-        Document doc = catalog.findById("java1");
-        CatalogUtil.view(doc);
+        try {
+            Catalog catalog = CatalogUtil.load("d:/Workspace Facultate/PA-Lab5/catalog.ser");
+            Document doc = catalog.findById("java1");
+            CatalogUtil.view(doc);
+        }
+        catch (InvalidCatalogException ex)
+        {
+            System.out.printf("Cannot load catalog: " + ex.toString());
+        }
+        catch (NullPointerException ex)
+        {
+            System.out.printf("Catalog not found!");
+        }
     }
 }
